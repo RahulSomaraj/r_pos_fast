@@ -1,0 +1,16 @@
+export enum SortingFields {
+  STATUS = 'isActive',
+  STORENAME = 'storename',
+  WAREHOUSENAME = 'warehouseNickname',
+  USERNAME = 'userName',
+  PHONENUMBER = 'phoneNumber',
+  EMAIL = 'contactEmail',
+  ALIAS = 'alias',
+  USERTYPE = 'userType',
+  PRODUCTNAME = 'name',
+  BRANDNAME = 'brandName',
+  CATEGORYNAME = 'categoryName',
+  CUSTOMERNAME = 'name',
+  CREATEDAT = 'addDate',
+  ID = 'id',
+}
