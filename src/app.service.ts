@@ -20,9 +20,9 @@ export class AppService {
     let token = '';
     const user: User | undefined = await this.userRepository.findOne({
       where: [
-        { userName: userLoginDto.username },
-        { contactEmail: userLoginDto.username },
-        { contactNumber: userLoginDto.username },
+        { user_name: userLoginDto.username },
+        { user_name: userLoginDto.username },
+        { contact_number: userLoginDto.username },
       ],
     });
     if (!user) {
@@ -38,15 +38,15 @@ export class AppService {
       (await bcrypt.compare(userLoginDto.password, user.password))
     ) {
       token = this.jwtService.sign(
-        { id: user.id, email: user.contactEmail },
+        { id: user.id, email: user.contact_email },
         { secret: process.env.TOKEN_KEY },
       );
       return {
         id: user.id,
         token: `Bearer ${token}`,
-        userName: user.userName,
-        email: user.contactEmail,
-        userType: user.userType,
+        userName: user.user_name,
+        email: user.contact_email,
+        userType: user.usertype,
       };
     } else {
       throw new HttpException(

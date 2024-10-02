@@ -12,7 +12,7 @@ import { CreateUserDto } from './dto/createUserDto';
 import { UpdateUserDto } from './dto/updateUserDto';
 
 @Injectable()
-export class UserService {
+export class ProductService {
   constructor(
     private readonly connection: DataSource,
     @InjectRepository(User)

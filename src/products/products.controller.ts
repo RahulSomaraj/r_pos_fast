@@ -15,9 +15,7 @@ import { JwtAuthGuard } from 'src/auth/guard/jwt-auth-guard';
 import { RolesGuard } from 'src/auth/guard/roles.guards';
 import { Roles } from 'src/auth/guard/roles.decorator';
 import { HttpExceptionFilter } from 'src/shared/exception-service';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/createUserDto';
-import { UpdateUserDto } from './dto/updateUserDto';
+import { ProductService } from './products.service';
 
 @Controller('users')
 @ApiTags('users')
@@ -30,31 +28,34 @@ import { UpdateUserDto } from './dto/updateUserDto';
   UserType.BILLER,
   UserType.TABLEATTENDANT,
 )
-export class UserController {
-  constructor(private readonly userService: UserService) {}
+export class ProductController {
+  constructor(private readonly productService: ProductService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.createUser(createUserDto);
+  async create(@Body() createProductDto: CreateProductDto) {
+    return this.productService.createUser(createProductDto);
   }
 
   @Get()
   async findAll() {
-    return this.userService.findAll();
+    return this.productService.findAll();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: number) {
-    return this.userService.findOne(id);
+    return this.productService.findOne(id);
   }
 
   @Patch(':id')
-  async update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
+  async update(
+    @Param('id') id: number,
+    @Body() updateUserDto: UpdateProductDto,
+  ) {
+    return this.productService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   async remove(@Param('id') id: number) {
-    return this.userService.remove(id);
+    return this.productService.remove(id);
   }
 }

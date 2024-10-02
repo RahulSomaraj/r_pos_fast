@@ -24,13 +24,13 @@ export class User {
   name: string;
 
   @Column({ unique: true })
-  userName: string;
+  user_name: string;
 
   @Column({ unique: true })
-  contactNumber: string;
+  contact_number: string;
 
   @Column({ unique: true })
-  contactEmail: string;
+  contact_email: string;
 
   @Column()
   address: string;
@@ -45,16 +45,16 @@ export class User {
   pincode: string;
 
   @CreateDateColumn()
-  addDate: Date;
+  add_date: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deleted_at: Date;
 
   @Column({ nullable: true })
-  joinDate: Date;
+  join_date: Date;
 
   @Column({ nullable: true })
-  leaveDate: Date;
+  leave_date: Date;
 
   @Column()
   password: string;
@@ -65,7 +65,7 @@ export class User {
   aadhar: string;
 
   @Column()
-  officeLocation: string;
+  office_location: string;
 
   @Column()
   post: string;
@@ -74,20 +74,20 @@ export class User {
     nullable: true,
     default: true,
   })
-  isActive: boolean;
+  is_active: boolean;
 
   @Column({
     type: 'enum',
     enum: UserType,
     nullable: true,
   })
-  userType: UserType;
+  usertype: UserType;
 
   @Column({
     nullable: true,
     default: false,
   })
-  isDeleted: boolean;
+  is_deleted: boolean;
 
   @BeforeInsert()
   @BeforeUpdate()

@@ -15,6 +15,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { configService } from './config/psql.config';
 import { User } from './users/entity/user.entity';
 import { AuthTokens } from './auth/entity/auth.entity';
+import { UserModule } from './users/user.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { AuthTokens } from './auth/entity/auth.entity';
       }),
       inject: [ConfigService],
     }),
+    UserModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

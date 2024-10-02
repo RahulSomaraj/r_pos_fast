@@ -7,6 +7,7 @@ import {
   IsDate,
   IsString,
   IsDateString,
+  IsEnum,
 } from 'class-validator';
 import { UserType } from '../enums/user.types';
 
@@ -67,7 +68,7 @@ export class CreateUserDto {
   readonly officeLocation: string;
 
   @ApiProperty()
+  @IsEnum(UserType)
   @IsOptional()
-  @IsNotEmpty()
-  readonly userType: string;
+  userType?: UserType;
 }
