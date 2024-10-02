@@ -1,5 +1,4 @@
 import { JwtService } from '@nestjs/jwt';
-import { User } from './entity/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   HttpException,
@@ -8,29 +7,40 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Brackets, DataSource, Not, Repository } from 'typeorm';
-import { CreateUserDto } from './dto/createUserDto';
-import { UpdateUserDto } from './dto/updateUserDto';
+import { Product } from './entity/product.enitity';
+import { CreateProductDto } from './dto/createproduct.dto';
+import { UpdateProductDto } from './dto/updateproduct.dto';
+import { User } from 'src/users/entity/user.entity';
 
 @Injectable()
 export class ProductService {
   constructor(
     private readonly connection: DataSource,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
-    private jwtService: JwtService,
+    @InjectRepository(Product)
+    private productRepository: Repository<Product>,
   ) {}
 
-  async createUser(createUserDto: CreateUserDto): Promise<User> {
-    const newUser = this.userRepository.create(createUserDto);
-    return this.userRepository.save(newUser);
+  async createProduct(
+    user: User,
+    createProductDto: CreateProductDto,
+  ): Promise<Product> {
+    const product = {
+      name: createProductDto.name,
+      picture: createProductDto.picture ?? null,
+      created_by: user,
+      time_required: createProductDto.timeRequired,
+      is_deleted: false,
+    };
+    const newProduct = this.productRepository.create(product);
+    return this.productRepository.save(newProduct);
   }
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+  async findAll(): Promise<Product[]> {
+    return this.productRepository.find();
   }
 
-  async findOne(id: number): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id } });
+  async findOne(id: number): Promise<Product> {
+    const user = await this.productRepository.findOne({ where: { id } });
     if (!user) {
       throw new HttpException(
         {
@@ -43,14 +53,17 @@ export class ProductService {
     return user;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateProduct(
+    id: number,
+    updateUserDto: UpdateProductDto,
+  ): Promise<Product> {
     const user = await this.findOne(id); // Verify the user exists
     Object.assign(user, updateUserDto); // Update user fields
-    return this.userRepository.save(user);
+    return this.productRepository.save(user);
   }
 
   async remove(id: number): Promise<void> {
     const user = await this.findOne(id); // Verify the user exists
-    await this.userRepository.softRemove(user);
+    await this.productRepository.softRemove(user);
   }
 }

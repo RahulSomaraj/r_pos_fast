@@ -67,9 +67,6 @@ export class User {
   @Column()
   office_location: string;
 
-  @Column()
-  post: string;
-
   @Column({
     nullable: true,
     default: true,

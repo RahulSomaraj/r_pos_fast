@@ -22,14 +22,14 @@ import { UpdateUserDto } from './dto/updateUserDto';
 @Controller('users')
 @ApiTags('users')
 @UseFilters(new HttpExceptionFilter('User'))
-@ApiBearerAuth()
-@UseGuards(JwtAuthGuard, RolesGuard)
-@Roles(
-  UserType.SUPER_ADMIN,
-  UserType.KITCHEN,
-  UserType.BILLER,
-  UserType.TABLEATTENDANT,
-)
+// @ApiBearerAuth()
+// @UseGuards(JwtAuthGuard, RolesGuard)
+// @Roles(
+//   UserType.SUPER_ADMIN,
+//   UserType.KITCHEN,
+//   UserType.BILLER,
+//   UserType.TABLEATTENDANT,
+// )
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -50,7 +50,7 @@ export class UserController {
 
   @Patch(':id')
   async update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
+    return this.userService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
