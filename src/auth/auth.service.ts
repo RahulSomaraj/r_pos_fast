@@ -19,6 +19,7 @@ export class AuthService {
         { contact_number: username.trim() },
       ],
     });
+
     if (user && (await bcrypt.compare(password, user?.password))) {
       const { password, ...result } = user;
       return result;

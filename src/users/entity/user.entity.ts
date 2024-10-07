@@ -38,7 +38,7 @@ export class User {
   @Column({ nullable: true })
   city: string;
 
-  @Column()
+  @Column({ nullable: true })
   state: string;
 
   @Column({ nullable: true })
@@ -64,7 +64,7 @@ export class User {
   })
   aadhar: string;
 
-  @Column()
+  @Column({ nullable: true })
   office_location: string;
 
   @Column({
