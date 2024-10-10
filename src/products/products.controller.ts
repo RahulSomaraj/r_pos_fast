@@ -34,7 +34,7 @@ import { UserType } from 'src/users/enums/user.types';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @Post()
+  @Post('create')
   async create(@Body() createProductDto: CreateProductDto, @Req() request) {
     const { user } = request;
     return this.productService.createProduct(user, createProductDto);
