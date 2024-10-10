@@ -8,6 +8,7 @@ import {
   IsString,
   IsDateString,
   IsEnum,
+  IsNumber,
 } from 'class-validator';
 
 export class UpdateProductDto {
@@ -21,8 +22,15 @@ export class UpdateProductDto {
   @IsNotEmpty()
   readonly picture: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional({ type: Number })
+  @IsNumber()
   @IsOptional()
   @IsNotEmpty()
-  readonly timeRequired: string;
+  readonly timeRequired: number;
+
+  @ApiPropertyOptional({ type: Number })
+  @IsNumber()
+  @IsOptional()
+  @IsNotEmpty()
+  readonly category: number;
 }

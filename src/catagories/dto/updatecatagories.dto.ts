@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsNumber } from 'class-validator';
 
-export class CreateProductDto {
+export class UpdateCatDto {
   @ApiProperty()
   @IsOptional()
   @IsNotEmpty()
@@ -11,16 +11,4 @@ export class CreateProductDto {
   @IsOptional()
   @IsNotEmpty()
   readonly picture: string;
-
-  @ApiPropertyOptional({ type: Number })
-  @IsNumber()
-  @IsOptional()
-  @IsNotEmpty()
-  readonly timeRequired: number;
-
-  @ApiPropertyOptional({ type: Number })
-  @IsNumber()
-  @IsOptional()
-  @IsNotEmpty()
-  readonly category: number;
 }
