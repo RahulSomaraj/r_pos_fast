@@ -18,6 +18,7 @@ import { AuthTokens } from './auth/entity/auth.entity';
 import { UserModule } from './users/user.module';
 import { ProductsModule } from './products/products.module';
 import { AuthModule } from './auth/auth.module';
+import { CategoriesModule } from './catagories/catagory.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     ProductsModule,
     AuthModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

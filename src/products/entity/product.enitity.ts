@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/entity/user.entity';
+import { Catagory } from 'src/catagories/entity/catagory.entity';
 
 @Entity({ name: 'products' })
 export class Product {
@@ -24,6 +25,9 @@ export class Product {
 
   @ManyToOne(() => User, (user) => user.id)
   created_by: User;
+
+  @ManyToOne(() => Catagory, (cat) => cat.id, { nullable: true })
+  catogory: Catagory;
 
   @Column({ nullable: true })
   time_required: number;
